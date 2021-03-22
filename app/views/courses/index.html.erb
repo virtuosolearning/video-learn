@@ -1,0 +1,9 @@
+<h1>Welcome to VideoLearn</h1>
+<h2>You can learn amazing courses below.</h2>
+
+<% @courses.each do |course| %>
+  <section>
+    <h3><%= link_to course.title, course %></h3>
+    <h3><%= course.description %></h3>
+  </section>
+<% end %>

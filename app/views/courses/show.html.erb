@@ -1,0 +1,14 @@
+<h1><%= @course.title %></h1>
+<p><%= @course.description %></p>
+
+<h2>Lessons</h2>
+<% @lessons.each do |lesson| %>
+  <section>
+    <h3><%= link_to lesson.title, lesson %></h3>
+    <% if lesson.is_excel? %>
+      <p>Excel Lesson</p>
+    <% elsif lesson.is_powerpoint? %>
+      <p>Powerpoint Lesson</p>
+    <% end %>
+  </section>
+<% end %>
