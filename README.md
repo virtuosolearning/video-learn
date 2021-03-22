@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to VideoLearn - the LMS (Learning Management System) of the future.
 
-Things you may want to cover:
+## Get started
 
-* Ruby version
+Getting started developing VideoLearn locally is simple. Run the following commands
+to create a local Sqlite database and populate it with courses.
 
-* System dependencies
+```
+git clone git@github.com:virtuosolearning/video-learn.git
+cd video-learn/
+bundle
 
-* Configuration
+rails db:create
+rails db:migrate
+rails db:seed
+```
 
-* Database creation
+Seeding the database creates a user with the following credentials:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+email: user@example.com
+password: password
+```
