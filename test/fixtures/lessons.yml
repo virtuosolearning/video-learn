@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  video_link: MyString
+  is_powerpoint: false
+  is_excel: false
+  course: one
+
+two:
+  title: MyString
+  video_link: MyString
+  is_powerpoint: false
+  is_excel: false
+  course: two
