@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.count' do
+    it 'counts two users' do
+      create_pair(:user)
+      expect(User.count).to eq(2)
+    end
+  end
 end
