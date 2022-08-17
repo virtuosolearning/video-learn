@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_101303) do
+ActiveRecord::Schema.define(version: 2022_08_04_152706) do
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lesson_views", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "lesson_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_lesson_views_on_lesson_id"
+    t.index ["user_id"], name: "index_lesson_views_on_user_id"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -42,5 +51,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_101303) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lesson_views", "lessons"
+  add_foreign_key "lesson_views", "users"
   add_foreign_key "lessons", "courses"
 end
