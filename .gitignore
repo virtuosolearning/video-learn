@@ -39,4 +39,4 @@
 yarn-debug.log*
 .yarn-integrity
 .idea/
-.tool_version
+.tool_versions
