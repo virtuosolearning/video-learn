@@ -1,0 +1,11 @@
+.comments {
+  .comments__comment {
+    margin: 10px;
+  }
+  .comments__comment--name {
+    font-weight: bold;
+  }
+  .comments__comment--message {
+    font-style: italic;
+  }
+}

@@ -5,4 +5,23 @@
 <iframe src="<%= @lesson.video_link %>"></iframe>
 
 <p>Total Views</p>
-  <%= @lesson_counter %>
+
+<%= @lesson_counter %>
+
+<%= form_for @comment do |f| %>
+  <%= f.text_area :comment %>
+  <%= f.hidden_field :lesson_id, value: @lesson.id %>
+  <%= f.submit %>
+<% end %>
+
+
+<div class="comments">
+  <h3>Comments</h3>
+  <% @comments.each do |c| %>
+    <div class="comments__comment">
+      <div class="comments__comment--name"><%= c.user.email %></div>
+      <div class="comments__comment--message"><%= c.comment %></div>
+    </div>
+  <% end %>
+</div>
+
