@@ -1,4 +1,4 @@
 class Lesson < ApplicationRecord
+  include Commentable
   belongs_to :course
-  has_many :comments
 end

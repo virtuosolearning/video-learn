@@ -2,10 +2,12 @@ class CommentsController < ApplicationController
   
   def create
     if Comment.create(comment_params)
-      redirect_to lesson_path(Lesson.find(comment_params[:lesson_id]))
+      flash[:notice] = "Comment created successfuly"
     else
       flash[:error] = "Could not create comment"
     end
+
+    redirect_to Lesson.find(comment_params[:lesson_id])
   end
 
 private
