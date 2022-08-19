@@ -11,7 +11,8 @@ RSpec.feature "User comment on a lesson", type: :feature do
     click_link course.title
     click_link lesson.title
     fill_in :comment_comment, :with => 'My message'
-    
+    click_button('Create Comment')
+
     expect(find('.comments__comment--message')).to have_content('My message')
     expect(find('.comments__comment--name')).to have_content(user.email)
     expect(find('.flash.notice')).to have_content('Comment created successfuly')
