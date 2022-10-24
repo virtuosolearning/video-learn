@@ -1,0 +1,10 @@
+<% comment_record = edit_comment.present? ? edit_comment : Comment.new %>
+
+<%= form_for([@lesson, comment_record]) do |f| %>
+  <% if commentable_object %>
+    <%= f.hidden_field :commentable_id, value: commentable_object.id  %>
+    <%= f.hidden_field :commentable_type, value: commentable_object.class.name %>
+  <% end %>
+  <%= f.text_area :body %><br/>
+  <%= f.submit %>
+<% end %>
