@@ -1,10 +1,15 @@
-<% comment_record = edit_comment.present? ? edit_comment : Comment.new %>
-
-<%= form_for([@lesson, comment_record]) do |f| %>
-  <% if commentable_object %>
-    <%= f.hidden_field :commentable_id, value: commentable_object.id  %>
-    <%= f.hidden_field :commentable_type, value: commentable_object.class.name %>
-  <% end %>
+<!--We need to set some variables to account for the form on lessons/show-->
+<!--the idea of the comment_root_object is whatever object the source of the comments,
+here it is lessons but hopefully without to many changes it can be courses or something else too -->
+<!--this form is used for creating new top level commments, replies and editing comments,
+ hence the badly named @new_or_edit_comment as it can be a new record or an existing one being edited-->
+<!--Sorry for the bad variable names! They require a bit more thought-->
+<% @comment_root_object = @lesson if @lesson %>
+<% @new_or_edit_comment ||= Comment.new %>
+<% @commentable_object ||= @lesson %>
+<%= form_for([@comment_root_object, @new_or_edit_comment ]) do |f| %>
+  <%= f.hidden_field :commentable_id, value: @commentable_object.id %>
+  <%= f.hidden_field :commentable_type, value: @commentable_object.class.name %>
   <%= f.text_area :body %><br/>
   <%= f.submit %>
 <% end %>

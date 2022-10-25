@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :lessons do
-    resources :comments
+    resources :comments do
+      post  :display_form, as: :form_create
+      patch :display_form, as: :form_update
+    end
   end
 
   resources :courses
