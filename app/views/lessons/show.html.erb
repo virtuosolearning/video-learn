@@ -1,5 +1,52 @@
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
 <h1>
   <%= @lesson.title %>
 </h1>
 
 <iframe src="<%= @lesson.video_link %>"></iframe>
+<h3 class="text-center mb-5">
+  Comments
+</h3>
+<div class="top-level-comment">
+  <%= render partial: 'comments/form' %>
+</div>
+<div class="comments">
+  <%= render @lesson.comments %>
+</div>
+
+<script>
+  document.querySelectorAll('.show-form').forEach((el) => {
+    el.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      el.parentElement.nextElementSibling.style = 'display: block;'
+      el.parentElement.nextElementSibling.nextElementSibling.style = 'display: none;'
+    })
+  })
+</script>
+
+<script>
+  document.querySelectorAll('.edit-comment').forEach((el) => {
+    el.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      el.parentElement.nextElementSibling.nextElementSibling.style = 'display: block;'
+      el.parentElement.nextElementSibling.style = 'display: none;'
+    })
+  })
+</script>
+
+<script>
+  document.querySelectorAll('.hide-form').forEach((el) => {
+    el.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      el.parentElement.parentElement.style = 'display: none;'
+    })
+  })
+</script>
+
+
+
+

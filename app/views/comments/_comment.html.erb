@@ -1,0 +1,36 @@
+<div id=<%= "comment-#{comment.id}"%>  class="comment-block">
+  <div class="comment-heading">
+    <div class="comment-info">
+      <div class="datetime">
+        <a href="#" class="comment-author"><small>By: <%= comment.user.email %></small></a><br>
+        <!-- just to note if the comment has been edited-->
+        <% if comment.updated_at > comment.created_at  %>
+          <small>edited <%= distance_of_time_in_words(comment.updated_at, DateTime.now) %> ago</small>
+        <% else %>
+          <small><%= distance_of_time_in_words(comment.created_at, DateTime.now) %> ago</small>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="comment-body">
+    <p>
+      <%= comment.deleted_at ? "--- comment deleted at #{comment.deleted_at.strftime("%m/%d/%Y at %I:%M%p")} ---" : comment.body %>
+    </p>
+    <!--if a comment is deleted it shouldn't be editable. even if i don't really destroy them-->
+    <% unless comment.deleted_at %>
+      <div class="comment-actions">
+        <%=link_to "Reply", lesson_comment_form_create_path(@lesson, comment, format: :js), method: :post, :remote => true %>
+        <!-- only the author can edit or delete comments-->
+        <% if current_user == comment.user %>
+          |<%=link_to "Edit", lesson_comment_form_update_path(@lesson, comment, format: :js), method: :patch, :remote => true %>
+          |<%= link_to 'Delete', lesson_comment_path(@lesson, comment, delete_comment: true), method: :patch, :data => { :confirm => "Are you sure you want to delete your comment?" } %>
+        <% end %>
+      </div>
+      <div class="comment-form">
+      </div>
+    <% end %>
+  </div>
+  <div class="replies">
+    <%= render comment.comments %>
+  </div>
+</div>
